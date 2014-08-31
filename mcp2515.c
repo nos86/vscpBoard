@@ -96,7 +96,8 @@ char _CAN_init( int CAN_Bus_Speed, char Freq, char SJW, char autoBaud ) {
     tempBT = NBT / TQ;
         if ( tempBT <= 25 ) {
           BT = (int)(tempBT+0.5);
-          if ( abs(tempBT - (float)BT) < 0.01 ) break;
+          float diff = tempBT - (float)BT;
+          if ( (diff < 0.01) & (diff > -0.01) ) break;
         }
     }
     char SPT = (char)(0.7 * BT); // Sample point
